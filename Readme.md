@@ -1,4 +1,15 @@
-# Smartwyre Developer Test Instructions
+# Smartwyre Developer Test
+
+This is my refactoring of the Smartwyre test, the instructions can be seen below.
+I adhered to the SOLID principles to maintain a well-structured, readable, and easily scalable code. As you can see, the rebate calculation is being done from individual implementations of the IIncentiveCalculator interface. This interface was created to avoid excessive use of conditionals in the main function of the RebateService, which is also the main function of this small application. Furthermore, I created a mediator to take care of returning the appropriate IncentiveCalculator for each operation as required by the request. On the other hand, I used dependency injection to facilitate the execution of unit tests through mock classes.
+Had I had more time, I would have liked to:
+
+- Implement the data access layer.
+- Create an error response that provides more detail about unsuccessful requests.
+- Extend the application to function as an API.
+- Validate requests with FluentValidation.
+
+# Instructions
 
 In the 'RebateService.cs' file you will find a method for calculating a rebate. At a high level the steps for calculating a rebate are:
 

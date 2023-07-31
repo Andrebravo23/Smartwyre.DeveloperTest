@@ -28,14 +28,16 @@ public class RebateService : IRebateService
 
         if (rebate == null || product == null)
         {
+            // The result can be extended to retrieve more information on error cases
             return new CalculateRebateResult();
         }
 
-        IIncentiveCalculator incentiveCalculator = _incentiveCalculatorMediator.GetCalculator(rebate.Incentive) ??
-            throw new NotImplementedException($"Could not find an Incentive Calculator for Incentive Type {nameof(rebate.Incentive)}.");
+        // The mediator will try to find the required calculator, if it can't find it, it will throw an exception
+        IIncentiveCalculator incentiveCalculator = _incentiveCalculatorMediator.GetCalculator(rebate.Incentive);
         
         if (!incentiveCalculator.IsSupportedByProduct(product))
         {
+            // Here an error can be returned specifying that the product doesn't support this incentive type
             return new CalculateRebateResult();
         }
      

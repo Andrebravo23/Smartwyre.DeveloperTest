@@ -21,15 +21,7 @@ class Program
         
         var rebateService = serviceProvider.GetRequiredService<IRebateService>();
 
-        var request = new CalculateRebateRequest
-        {
-            RebateIdentifier = "RebateIdentifier",
-            ProductIdentifier = "ProductIdentifier",
-            Volume = 10
-        };
-        var result = rebateService.Calculate(request);
-
-        Console.WriteLine(result.Amount);
+        // here rebateService can be used to make the calculations. Run the tests to check that the implementation is correct.
     }
 
     private static void ConfigureServices(IServiceCollection services)

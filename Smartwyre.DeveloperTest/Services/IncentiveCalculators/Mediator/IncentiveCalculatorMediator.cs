@@ -22,7 +22,7 @@ namespace Smartwyre.DeveloperTest.Services.IncentiveCalculators.Mediator
             var calculators = typeof(IIncentiveCalculator).Assembly.GetTypes()
                 .Where(t => t.GetCustomAttributes<IncentiveTypeAttribute>().Any(a => a.IncentiveType == incentiveType));
 
-            if (!calculators.Any()) return null;
+            if (!calculators.Any()) throw new NotImplementedException($"Could not find an Incentive Calculator for Incentive Type {incentiveType}.");
 
             var calculatorType = calculators.First();
             return _serviceProvider.GetRequiredService(calculatorType) as IIncentiveCalculator;
